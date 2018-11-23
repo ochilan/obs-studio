@@ -73,7 +73,7 @@ int jack_process_callback(jack_nframes_t nframes, void* arg)
 
 	out.frames    = nframes;
 	out.timestamp = os_gettime_ns() -
-				jack_frames_to_time(data->jack_client, nframes);
+				(1000 * jack_frames_to_time(data->jack_client, nframes));
 
 	obs_source_output_audio(data->source, &out);
 	pthread_mutex_unlock(&data->jack_mutex);
